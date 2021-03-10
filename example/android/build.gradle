@@ -3,9 +3,9 @@ buildscript {
     repositories {
         google()
         jcenter()
-        flatDir {
-            dirs 'libs'
-        }
+        maven { url 'https://jitpack.io' }
+        maven { url "http://nexus.carnegietechnologies.rs:8085/repository/android-library/" }
+
     }
 
     dependencies {
@@ -18,9 +18,9 @@ allprojects {
     repositories {
         google()
         jcenter()
-        flatDir {
-            dirs 'libs'
-        }
+        maven { url 'https://jitpack.io' }
+        maven { url "http://nexus.carnegietechnologies.rs:8085/repository/android-library/" }
+
     }
 }
 

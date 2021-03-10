@@ -1,15 +1,21 @@
 package com.example.ins_images_picker
 
 import android.app.Activity
+import android.content.Context
 import android.util.Log
 import androidx.annotation.NonNull
 import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.app.IApp
+import com.luck.picture.lib.app.PictureAppMaster
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.config.PictureSelectionConfig.imageEngine
+import com.luck.picture.lib.crash.PictureSelectorCrashUtils
+import com.luck.picture.lib.engine.PictureSelectorEngine
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.instagram.InsGallery
 import com.luck.picture.lib.listener.OnResultCallbackListener
+import com.luck.pictureselector.GlideEngine
+import com.luck.pictureselector.PictureSelectorEngineImp
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -19,13 +25,15 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** InsImagesPickerPlugin */
-public class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, OnResultCallbackListener<LocalMedia>, ActivityAware {
+public class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, OnResultCallbackListener<LocalMedia>, ActivityAware, IApp {
 
     private lateinit var channel: MethodChannel
     private var activity: Activity? = null
     private var channelResult: MethodChannel.Result? = null
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+        PictureAppMaster.getInstance().app = this
+        PictureSelectorCrashUtils.init { t: Thread?, e: Throwable? -> }
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "ins_images_picker")
         channel.setMethodCallHandler(this)
     }
@@ -45,6 +53,14 @@ public class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, OnResultC
             val channel = MethodChannel(registrar.messenger(), "ins_images_picker")
             channel.setMethodCallHandler(InsImagesPickerPlugin())
         }
+    }
+
+    override fun getAppContext(): Context? {
+        return activity
+    }
+
+    override fun getPictureSelectorEngine(): PictureSelectorEngine? {
+        return PictureSelectorEngineImp()
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: MethodChannel.Result) {
@@ -68,13 +84,13 @@ public class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, OnResultC
     private fun getType(type: Int): Int {
         return when (type) {
             0 -> {
-                PictureMimeType.ofAll();
+                PictureMimeType.ofAll()
             }
             1 -> {
-                PictureMimeType.ofImage();
+                PictureMimeType.ofImage()
             }
             2 -> {
-                PictureMimeType.ofVideo();
+                PictureMimeType.ofVideo()
 
             }
             else -> PictureMimeType.ofAll()
@@ -118,7 +134,7 @@ public class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, OnResultC
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        this.activity = binding.activity;
+        this.activity = binding.activity
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
