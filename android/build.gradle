@@ -11,9 +11,6 @@ buildscript {
         }
         google()
         maven { url "http://nexus.carnegietechnologies.rs:8085/repository/android-library/" }
-//        flatDir {
-//            dirs 'libs'
-//        }
     }
 
     dependencies {
@@ -53,17 +50,9 @@ android {
 }
 
 dependencies {
-//    implementation fileTree(dir: 'libs', include: ['*.aar'])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation ("com.carnegietechnologies.flutter:pictureLibrary:7.0.2"){
+    implementation("com.carnegietechnologies.flutter:instagramGallery:7.0.2") {
         transitive = true
     }
-//    implementation "com.carnegietechnologies.flutter:ucrop:7.0.2"
-    implementation ("com.github.bumptech.glide:glide:4.11.0")
-
-//    implementation (name: 'picture_library', ext: 'aar')
-//    implementation (name: 'ucrop', ext: 'aar')
-//    implementation 'jp.co.cyberagent.android:gpuimage:2.0.4'
-
+    implementation("com.github.bumptech.glide:glide:4.11.0")
 }
