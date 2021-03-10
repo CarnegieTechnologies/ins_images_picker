@@ -39,7 +39,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.ins_images_picker_example"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -60,4 +60,15 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation "com.github.bumptech.glide:glide:4.11.0"
+//    implementation "androidx.camera:camera-view:1.0.0-alpha22"
+//    implementation "androidx.camera:camera-lifecycle:1.1.0-alpha02"
+//    implementation "androidx.camera:camera-camera2:1.1.0-alpha02"
+    implementation("com.carnegietechnologies.flutter:pictureLibrary:7.0.2") {
+        transitive = true
+    }
+//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+//    implementation "com.carnegietechnologies.flutter:instagramGallery:1.0.1"
+
+
 }
