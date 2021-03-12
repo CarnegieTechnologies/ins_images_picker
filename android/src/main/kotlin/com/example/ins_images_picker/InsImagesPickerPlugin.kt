@@ -14,8 +14,6 @@ import com.luck.picture.lib.engine.PictureSelectorEngine
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.instagram.InsGallery
 import com.luck.picture.lib.listener.OnResultCallbackListener
-import com.luck.pictureselector.GlideEngine
-import com.luck.pictureselector.PictureSelectorEngineImp
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -24,8 +22,9 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
+
 /** InsImagesPickerPlugin */
-public class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, OnResultCallbackListener<LocalMedia>, ActivityAware, IApp {
+class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, OnResultCallbackListener<LocalMedia>, ActivityAware, IApp {
 
     private lateinit var channel: MethodChannel
     private var activity: Activity? = null

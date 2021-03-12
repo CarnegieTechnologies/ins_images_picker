@@ -5,7 +5,7 @@ PODS:
     - SteviaLayout (~> 4.7.3)
   - Flutter (1.0.0)
   - ins_images_picker (0.1.2):
-    - CTYPImagePicker (~> 4.6.2)
+    - CTYPImagePicker (~> 4.6.3)
     - Flutter
   - Mantis (1.4.12)
   - PryntTrimmerView (4.0.2)
@@ -44,7 +44,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CTYPImagePicker: 56e9e11560c261667f45984e1bd9d3c3078e8ed3
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  ins_images_picker: f8174244d6603d9395ca9f6f4402388adfe76740
+  ins_images_picker: e14becabbb47c5eb6776690971d9a6a78dec7c1e
   Mantis: c2afb625fc19754877b36e7a2708359a32577d7c
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
@@ -52,4 +52,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e43dbafb502c18bbf309fba4c273e4f9805a8b72
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.8.4
