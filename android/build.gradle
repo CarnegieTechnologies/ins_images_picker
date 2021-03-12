@@ -53,6 +53,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation("com.carnegietechnologies.flutter:instagramGallery:7.0.2")
+    implementation("com.carnegietechnologies.flutter:instagramGallery:0.0.4")
 
 }
