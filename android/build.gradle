@@ -54,4 +54,5 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation("com.carnegietechnologies.flutter:instagramGallery:7.0.2")
+
 }
