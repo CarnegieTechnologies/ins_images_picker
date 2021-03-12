@@ -56,13 +56,12 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation("com.carnegietechnologies.flutter:pictureLibrary:0.0.4")
 
 //    implementation "androidx.camera:camera-camera2:${cfgs.camerax_version}"
-//    implementation("com.carnegietechnologies.flutter:pictureLibrary:0.0.4")
     implementation "com.github.bumptech.glide:glide:4.11.0"
 //    picture_library-release
 }
