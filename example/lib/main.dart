@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ins_images_picker/ins_gallery_picker.dart';
 import 'dart:io';
 
-import 'package:ins_images_picker/ins_images_picker.dart';
 import 'package:ins_images_picker_example/video.dart';
 
 void main() {
