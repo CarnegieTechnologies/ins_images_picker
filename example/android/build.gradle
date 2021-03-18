@@ -3,10 +3,14 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "http://nexus.carnegietechnologies.rs:8085/repository/android-library/"
+        }
+
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.6.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -15,6 +19,12 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        maven {
+            url "http://nexus.carnegietechnologies.rs:8085/repository/android-library/"
+        }
+        maven { url "https://jitpack.io" }
+
     }
 }
 
