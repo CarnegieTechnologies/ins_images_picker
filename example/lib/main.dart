@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:ins_images_picker/ins_gallery_picker.dart';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:ins_images_picker/ins_gallery_picker.dart';
 import 'package:ins_images_picker_example/video.dart';
 
 void main() {
@@ -115,15 +115,17 @@ class _MyAppState extends State<MyApp> {
   }
 
   void showAndroidMediaPicker(int type) async {
-    List<File> images = await InsImagesPicker.showAndroidPicker(
-        maxImages: 1, showCrop: true, enableCropRotation: true);
-    if (images != null && images.isNotEmpty) {
-      images.forEach((element) {
-        _images.add(element);
+    List<File> files = await InsImagesPicker.showAndroidPicker(
+        type: type, maxImages: 1, showCrop: true, enableCropRotation: true);
+    if (files != null && files.isNotEmpty) {
+      files.forEach((element) {
+        type == InsImagesPicker.videoAndroid
+            ? _videos.add(element)
+            : _images.add(element);
       });
       setState(() {});
     } else {
-      print(images);
+      print(files);
     }
   }
 
@@ -139,21 +141,11 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       body: Container(
-          child: Column(
+          child: ListView(
         children: [
           MaterialButton(
             onPressed: () {
-              showAndroidMediaPicker(0);
-            },
-            child: Text("Android ALL Media",
-                style: TextStyle(
-                  color: Colors.white,
-                )),
-            color: Colors.red,
-          ),
-          MaterialButton(
-            onPressed: () {
-              showAndroidMediaPicker(1);
+              showAndroidMediaPicker(InsImagesPicker.imageAndroid);
             },
             child: Text("Android Image",
                 style: TextStyle(
@@ -163,7 +155,7 @@ class _MyAppState extends State<MyApp> {
           ),
           MaterialButton(
             onPressed: () {
-              showAndroidMediaPicker(2);
+              showAndroidMediaPicker(InsImagesPicker.videoAndroid);
             },
             child: Text("Android Video",
                 style: TextStyle(

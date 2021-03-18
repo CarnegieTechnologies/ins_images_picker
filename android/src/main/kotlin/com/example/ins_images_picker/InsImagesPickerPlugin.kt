@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.annotation.NonNull
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
+import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.instagram.InsGallery
 import com.luck.picture.lib.listener.OnResultCallbackListener
@@ -36,16 +37,16 @@ class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 val mutableList = mutableListOf<MutableMap<String, Any>>()
 
                 for (media in result!!) {
-                    Log.i("InsImagesPickerPlugin", "是否压缩:" + media.isCompressed)
-                    Log.i("InsImagesPickerPlugin", "压缩:" + media.compressPath)
-                    Log.i("InsImagesPickerPlugin", "原图:" + media.path)
-                    Log.i("InsImagesPickerPlugin", "是否裁剪:" + media.isCut)
-                    Log.i("InsImagesPickerPlugin", "裁剪:" + media.cutPath)
-                    Log.i("InsImagesPickerPlugin", "是否开启原图:" + media.isOriginal)
-                    Log.i("InsImagesPickerPlugin", "原图路径:" + media.originalPath)
-                    Log.i("InsImagesPickerPlugin", "Android Q 特有Path:" + media.androidQToPath)
+                    Log.i("InsImagesPickerPlugin", "isCompressed:" + media.isCompressed)
+                    Log.i("InsImagesPickerPlugin", "compressPath:" + media.compressPath)
+                    Log.i("InsImagesPickerPlugin", "path:" + media.path)
+                    Log.i("InsImagesPickerPlugin", "isCut:" + media.isCut)
+                    Log.i("InsImagesPickerPlugin", "cutPath:" + media.cutPath)
+                    Log.i("InsImagesPickerPlugin", "isOriginal:" + media.isOriginal)
+                    Log.i("InsImagesPickerPlugin", "originalPath:" + media.originalPath)
+                    Log.i("InsImagesPickerPlugin", "Android Q Path:" + media.androidQToPath)
                     Log.i("InsImagesPickerPlugin", "Size: " + media.size)
-                    Log.i("Media Type", "Size: " + media.mimeType)
+                    Log.i("Media Type", "mimeType: " + media.mimeType)
 
                     mutableList.add(mutableMapOf(
                             Pair("path", media.path),
@@ -60,7 +61,7 @@ class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             }
 
             override fun onCancel() {
-                TODO("Not yet implemented")
+
             }
 
         }
@@ -71,13 +72,29 @@ class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
         if (call.method == "pickerImages") {
             InsGallery.applyInstagramOptions(activity!!.applicationContext, PictureSelector.create(activity)
-                    .openGallery(1))
-                    .imageEngine(GlideEngine.createGlideEngine()).hideBottomControls(false).rotateEnabled(true).maxVideoSelectNum(0)
+                    .openGallery(getType(call.argument<Int>("type")!!)))
+                    .imageEngine(GlideEngine.createGlideEngine())
                     .isCamera(false).isCameraAroundState(false)
                     .selectionMode(PictureConfig.SINGLE).isEnableCrop(call.argument<Boolean>("showCrop")!!)
                     .forResult(callbackListener)
         } else {
             result.notImplemented()
+        }
+    }
+
+    private fun getType(type: Int): Int {
+        return when (type) {
+            0 -> {
+                PictureMimeType.ofAll();
+            }
+            1 -> {
+                PictureMimeType.ofImage();
+            }
+            2 -> {
+                PictureMimeType.ofVideo();
+
+            }
+            else -> PictureMimeType.ofAll()
         }
     }
 
