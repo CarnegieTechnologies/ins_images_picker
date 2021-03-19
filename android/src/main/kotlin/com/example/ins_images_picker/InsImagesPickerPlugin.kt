@@ -75,6 +75,7 @@ class InsImagesPickerPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     .openGallery(getType(call.argument<Int>("type")!!)))
                     .imageEngine(GlideEngine.createGlideEngine())
                     .isCamera(false).isCameraAroundState(false)
+                    .isMaxSelectEnabledMask(true).maxSelectNum(1).maxVideoSelectNum(1)
                     .selectionMode(PictureConfig.SINGLE).isEnableCrop(call.argument<Boolean>("showCrop")!!)
                     .forResult(callbackListener)
         } else {
