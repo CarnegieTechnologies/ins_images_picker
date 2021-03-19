@@ -7,6 +7,10 @@ buildscript {
         google()
         jcenter()
         maven {
+            credentials {
+                username "deployment"
+                password "deployment123"
+            }
             url "http://nexus.carnegietechnologies.rs:8085/repository/android-library/"
         }
     }
@@ -23,7 +27,10 @@ rootProject.allprojects {
         jcenter()
 
         maven {
-
+            credentials {
+                username "deployment"
+                password "deployment123"
+            }
             url "http://nexus.carnegietechnologies.rs:8085/repository/android-library/"
         }
     }
@@ -57,8 +64,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation("com.carnegietechnologies.flutter:instagramGallery:0.0.7"){
-        exclude group: 'com.github.yalantis', module: 'ucrop'
-    }
+    implementation("com.carnegietechnologies.flutter:instagramGallery:1.0.2")
 
 }
