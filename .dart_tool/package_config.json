@@ -131,10 +131,10 @@
       "name": "ins_images_picker",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.7"
+      "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-03-18T11:08:04.402024Z",
+  "generated": "2021-06-28T11:07:57.872979Z",
   "generator": "pub",
-  "generatorVersion": "2.12.1"
+  "generatorVersion": "2.12.3"
 }

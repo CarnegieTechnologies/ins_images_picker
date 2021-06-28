@@ -17,14 +17,14 @@ class InsImagesPicker {
   static const int galleryVideoIOS = 3;
 
   static Future<List<File>> showIOSPicker(
-      {@required int screenType,
-      @required int maxImages,
-      @required String appName,
-      @required Color navigationBarColor,
-      @required Color navigationBarItemColor,
-      @required Color backgroundColor,
-      @required int statusBarStyleValue,
-      @required double compressionQuality,
+      {required int screenType,
+      required int maxImages,
+      required String appName,
+      required Color navigationBarColor,
+      required Color navigationBarItemColor,
+      required Color backgroundColor,
+      required int statusBarStyleValue,
+      required double compressionQuality,
       bool showCrop = false,
       List<String> ratios = const ['1:1'],
       bool enableCropRotation = false,
@@ -59,12 +59,12 @@ class InsImagesPicker {
       return selectedFiles;
     } catch (e) {
       print(e);
-      return List<File>();
+      return [];
     }
   }
 
   static Future<List<File>> showAndroidPicker(
-      {@required int maxImages,
+      {required int maxImages,
       bool showCrop = false,
       bool enableCropRotation = false,
       bool showTrimVideo = false,
@@ -93,7 +93,7 @@ class InsImagesPicker {
       return selectedFiles;
     } catch (e) {
       print(e);
-      return List<File>();
+      return [];
     }
   }
 }
